@@ -6,18 +6,12 @@
 // in a new shell:
 // $ cargo run
 
-extern crate websocket;
+extern crate env_logger;
+extern crate hyper;
 
 fn main() {
-    let server = "https://localhost:8443";
-    let client = match websocket::client::ClientBuilder::new(server)
-        .unwrap()
-        .connect_insecure()
-    {
-        Ok(client) => println!("connected ok"),
-        Err(err) => {
-            println!("Failed to connect to {} with error: {:?}", server, err);
-            panic!("uh oh");
-        }
-    };
+    env_logger::init();
+    let server = "http://localhost:8443";
+    let client = hyper::Client::new();
+    let _ = client.get(server).send().unwrap();
 }
