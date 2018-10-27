@@ -1,0 +1,7 @@
+[package]
+name = "wstest"
+version = "0.1.0"
+authors = ["Josh Matthews <josh@joshmatthews.net>"]
+
+[dependencies]
+websocket = "0.20.3"
